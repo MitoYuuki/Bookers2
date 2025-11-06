@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <%= render 'users/list', book: Book.new %>
+
+    <%= render 'users/list', book: @book || Book.new %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <table class="table table-hover table-inverse">
-
+      <table class="table table-hover">
         <thead>
           <tr>
             <th></th>
@@ -26,7 +26,7 @@
                 <%= link_to book.title, book_path(book), class: "text-decoration-none" %>
               </td>
               <td>
-                <p><%= book.body %></p>
+                <p><strong></strong> <%= book.body %></p>
               </td>
             </tr>
           </tbody>

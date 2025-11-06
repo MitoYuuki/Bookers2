@@ -17,7 +17,7 @@
   </table>
 
   <div class="row">
-    <%= link_to edit_user_path(current_user), class: "btn btn-block btn-outline-secondary" do %>
+    <%= link_to edit_users_path(current_user), class: "btn btn-block btn-outline-secondary" do %>
       <i class="fas fa-user-cog">
       </i>
     <% end %>
@@ -25,12 +25,19 @@
 
 
   <h2>New book</h2>
-  <%= form_with model: @post_image do |f| %>
-    <h4>Title</h4>
-    <%= f.text_field :shop_name %>
-    <h4>Opinion</h4>
-    <%= f.text_area :caption %>
-    <%= f.submit 'Create Book', class: "btn btn-success" %>
+  <%= form_with model: @book, local: true do |f| %>
+    <div class="form-group">
+      <h4>Title</h4>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <h4>Opinion</h4>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+
+    <%= f.submit "Create Book", class: "btn btn-success mt-2" %>
   <% end %>
+  
 
 </div>

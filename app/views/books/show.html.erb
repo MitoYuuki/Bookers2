@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <%= render 'users/list', book: Book.new %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table table-hover table-inverse">
+
+          <tbody>
+            <tr class="align-middle">
+              <td>
+                <% if current_user.present? %>
+                  <p><%= image_tag current_user.get_profile_image(80,80) %></p>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to @book.title, book_path(@book), class: "text-decoration-none" %>
+              </td>
+              <td>
+                <p><%= @book.body %></p>
+              </td>
+              <td>
+                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success mb-1" %><br>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger" %>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
+  def index
+    # 本を登録したことのあるユーザー
+    @users = User.joins(:books).distinct
+    #@books = Book.all
+    #@users = User.all
+    #@books = Book.where(user_id: current_user.id) if current_user.present?
+  end
+
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images.page(params[:page])
+    @books = @user.books
   end
 
   def edit
@@ -10,14 +18,17 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])             # ユーザーの取得
-    @user.update(user_params)                  # ユーザーのアップデート
-    redirect_to user_path(@user)               # ユーザーの詳細ページへのリダイレクト
+    if @user.update(user_params)                  # ユーザーのアップデート
+    redirect_to user_path(@user), notice: "User updated successfully."# ユーザーの詳細ページへのリダイレクト
+    else
+      render :edit
+    end               
   end
 
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end
