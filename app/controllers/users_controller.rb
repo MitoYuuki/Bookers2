@@ -11,10 +11,16 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to books_path
+    end
   end
 
   def update
     @user = User.find(params[:id])             # ユーザーの取得
+    unless user.id == current_user.id
+      redirect_to books_path
+    end
     if @user.update(user_params)                  # ユーザーのアップデート
     redirect_to user_path(@user), notice: "User updated successfully."# ユーザーの詳細ページへのリダイレクト
     else

@@ -19,7 +19,11 @@
             <tr class="align-middle">
               <td>
                 <% if book.user.present? %>
-                  <p><%= image_tag book.user.get_profile_image(80,80) %></p>
+                  <p>
+                    <%= link_to user_path(book.user) do %>
+                      <%= image_tag book.user.get_profile_image(80,80) %>
+                    <% end %>
+                  </p>
                 <% end %>
               </td>
               <td>
