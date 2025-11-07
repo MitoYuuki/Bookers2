@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   def index
     # 本を登録したことのあるユーザー
     @users = User.joins(:books).distinct
-    #@books = Book.all
-    #@users = User.all
-    #@books = Book.where(user_id: current_user.id) if current_user.present?
   end
 
   def show

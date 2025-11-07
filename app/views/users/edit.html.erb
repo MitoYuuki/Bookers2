@@ -1,6 +1,18 @@
 <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   <h1>User info</h1>
 
+  <% filtered_errors = @user.errors.full_messages.reject { |msg| msg == "Name can't be blank" } %>
+<% if filtered_errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(filtered_errors.count, "error") %> prohibited this obj from being saved:</h2>
+    <ul>
+      <% filtered_errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
   <%= form_with model: @user, url: user_path(@user), local: true do |f| %>
     <div class="form-group">
       <label for="inputName">Name</label>

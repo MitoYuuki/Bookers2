@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="row">
-    <%= render 'users/list', book: Book.new %>
+  <div class="row align-items-stretch">
+  
+    <%= render 'users/list', book: @book || Book.new %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
