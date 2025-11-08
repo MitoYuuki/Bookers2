@@ -15,11 +15,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @book = current_user.books.build if user_signed_in? # サイドバー用フォーム
+    @book = current_user.books.build if user_signed_in? # サイドバー用フォーム 
+    @display_user = current_user
   end
 
   def show
-    #@user = User.find(params[:id])
+    @user = User.find(params[:id])
     @books = @user.books
     @book = current_user.books.build if user_signed_in? # サイドバー用フォーム
   end

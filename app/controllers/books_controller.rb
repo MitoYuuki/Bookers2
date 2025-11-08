@@ -20,6 +20,7 @@ class BooksController < ApplicationController
       #redirect_to @book
     else
       @books = Book.all
+      @user = current_user
       render :index
     end
   end
@@ -28,10 +29,11 @@ class BooksController < ApplicationController
     @books = Book.all
     #@book = Book.new
     @book = current_user.books.build if user_signed_in?
+    @user = current_user
   end
 
   def show
-  #@book = Book.find(params[:id])
+  @book = Book.find(params[:id])
   @user = @book.user
   end
 

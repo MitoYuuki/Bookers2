@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <%= render 'shared/sidebar', book: @book || Book.new %>
+    <%= render 'shared/sidebar', book: @book || Book.new, display_user: @display_user %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Users</h2>
@@ -30,8 +30,9 @@
                 <%= link_to "Show", user_path(user), class: "text-decoration-none" %>
               </td>
             </tr>
+           <% end %> 
           </tbody>
-        <% end %>
+        
       </table>
     </div>
   </div>

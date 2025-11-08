@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <%= render 'shared/sidebar', book: @book || Book.new %>
+    <%= render 'shared/sidebar', book: @book || Book.new, display_user: @user %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
