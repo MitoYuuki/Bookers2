@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <%= render 'users/list', book: Book.new %>
+    <%= render 'shared/sidebar', book: @book || Book.new %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
@@ -12,9 +12,14 @@
               <td>
                 <% if current_user.present? %>
                   <p>
-                    <%= image_tag current_user.get_profile_image(80,80) %><br>
-                    <%= link_to @book.user.name, user_path(@book.user) %>
+                    <%= link_to user_path(@book.user) do %>
+                      <%= image_tag @book.user.get_profile_image(80,80) %>
+                    <% end %>
                   </p>
+                  <p>
+                      <%= link_to @book.user.name, user_path(@book.user), class: "text-decoration-none" %>
+                  </p>
+                  
                 <% end %>
               </td>
               <td>

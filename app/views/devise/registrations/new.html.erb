@@ -1,55 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="mb-4 text-center">Sign up</h2>
 
-      <h2>Sign up</h2>
+      <% display_errors = resource.errors.full_messages.reject { |msg| msg =~ /Name can't be blank/ } %>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <% if resource.errors.any? %>
-          <% filtered_errors = resource.errors.full_messages.reject { |msg| msg == "Name can't be blank" } %>
-          <% if filtered_errors.any? %>
-            <div id="error_explanation">
-              <h3><%= pluralize(filtered_errors.count, "error") %> prohibited this user from being saved:</h3>
-              <ul>
-                <% filtered_errors.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
+      <% if display_errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+        <h4><%= pluralize(display_errors.count, "error") %> prohibited this user from being saved:</h4>
+        <ul>
+          <% display_errors.each do |msg| %>
+            <li><%= msg %></li>
           <% end %>
-        <% end %>
+        </ul>
+        </div>
+      <% end %>
 
-            <div class="field">
-              <%= f.label :name %><br>
-              <%= f.text_field :name %>
-            </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="field mb-3">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
 
-            <div class="field">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
+        <div class="field mb-3">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        </div>
 
-            <div class="field">
-              <%= f.label :password %>
-              <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </div>
+        <div class="field mb-3">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
 
-            <div class="field">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </div>
+        <div class="field mb-3">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
 
-            <div class="actions">
-              <%= f.submit "Sign up", class: "btn btn-success w-10" %>
-            </div>
-        <% end %>
+        <div class="actions mt-3 text-center">
+          <%= f.submit "Sign up", class: "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <div class="mt-3 text-center">
         <%= render "devise/shared/links" %>
-        
+      </div>
     </div>
   </div>
 </div>
-
-

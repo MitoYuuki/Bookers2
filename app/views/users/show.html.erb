@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row align-items-stretch">
   
-    <%= render 'users/list', book: @book || Book.new %>
+    <%= render 'shared/sidebar', book: @book || Book.new %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -19,8 +19,8 @@
           <% @books.each do |book| %>
             <tr class="align-middle">
               <td>
-                <% if book.user.present? %>
-                  <p><%= image_tag book.user.get_profile_image(80,80) %></p>
+                <%= link_to user_path(book.user) do %>
+                  <%= image_tag book.user.get_profile_image(80,80) %>
                 <% end %>
               </td>
               <td>
@@ -30,8 +30,8 @@
                 <p><%= book.body %></p>
               </td>
             </tr>
-          </tbody>
-        <% end %>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>

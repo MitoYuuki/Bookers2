@@ -18,13 +18,23 @@
 
   <div class="row">
     <%= link_to edit_users_path(current_user), class: "btn btn-block btn-outline-secondary" do %>
-      <i class="fas fa-user-cog">
-      </i>
+      <i class="fas fa-user-cog"></i>
     <% end %>
   </div>
 
-
   <h2>New book</h2>
+
+  <% if @book && @book.errors.any? %>
+    <div id="error_explanation">
+      <%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= form_with model: @book, local: true do |f| %>
     <div class="form-group">
       <h4>Title</h4>
@@ -38,6 +48,4 @@
 
     <%= f.submit "Create Book", class: "btn btn-success mt-2" %>
   <% end %>
-  
-
 </div>
